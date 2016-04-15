@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Skeleton {
+	
+	public static String[] words = {"the","word","is","a","woad","computer","when","it","eats","in","class"};
+	public static int length = 50;
+	
+	public static void main(String[] args) {
+		
+		Stopwatch timer = new Stopwatch();
+		System.out.println("When you have finished reading, type 'd' and press enter");
+		System.out.println("Ready? (Y)");
+		
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+		
+		if (input.toLowerCase().equals("y")) {
+			timer.start();
+			printStory(length);
+			String i2 = s.nextLine();
+			if (i2.equals("d")) {
+				timer.stop();
+			}
+		}
+		System.out.println(timer.getElapsedTime()/(double)1000+" Seconds for" + length+" words");
+		System.out.println((double)length*(double)60/((double)timer.getElapsedTime()/(double)1000)+"wpm");
+
+	}
+	
+	
+	public static void printStory(int x) {
+		for (int i = 0; i<x;i++) {
+			System.out.print(words[(int) (Math.random()*words.length)]+" ");
+			if (i%5==0) {
+				System.out.println();
+			}
+		}
+	}
+
+}
