@@ -1,17 +1,29 @@
 import java.util.Scanner;
+
+import com.sun.media.sound.SoftMixingSourceDataLine;
+
 import java.util.ArrayList;
 public class Skeleton {
 	
-	public static String[] words = {"the","word","is","a","woad","computer","when","it","eats","in","class"};;
 	public static String Homer1 = "Tell me, O muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy. Many cities did he visit, and many were the nations with whose manners and customs he was acquainted; moreover he suffered much by sea while trying to save his own life and bring his men safely home; but do what he might he could not save his men, for they perished through their own sheer folly in eating the cattle of the Sun-god Hyperion; so the god prevented them from ever reaching home. Tell me, too, about all these things, O daughter of Jove, from whatsoever source you may know them.";
+	public static String manifesto = "A spectre is haunting Europe – the spectre of communism. All the powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Tsar, Metternich and Guizot, French Radicals and German police-spies. Where is the party in opposition that has not been decried as communistic by its opponents in power? Where is the opposition that has not hurled back the branding reproach of communism, against the more advanced opposition parties, as well as against its reactionary adversaries? Two things result from this fact: I. Communism is already acknowledged by all European powers to be itself a power. II. It is high time that Communists should openly, in the face of the whole world, publish their views, their aims, their tendencies, and meet this nursery tale of the Spectre of Communism with a manifesto of the party itself.To this end, Communists of various nationalities have assembled in London and sketched the following manifesto, to be published in the English, French, German, Italian, Flemish and Danish languages.";
 	public static ArrayList<String> homer2; 
 	public static String twoCities = "Miss Manette to be, for the moment, in some adjacent room, until, having got past the two tall candles, he saw standing to receive him by the table between them and the fire, a young lady of not more than seventeen, in a riding-cloak, and still holding her straw travelling- hat by its ribbon in her hand. As his eyes rested on a short, slight, pretty figure, a quantity of golden hair, a pair of blue eyes that met his own with an inquiring look, and a forehead with a singular capacity (remembering how young and smooth it was), of rifting and knitting itself into an expression that was not quite one of perplexity, or wonder, or alarm, or merely of a bright fixed attention, though it included all the four expressions-as his eyes rested on these things, a sudden vivid likeness passed before him, of a child whom he had held in his arms on the passage across that very Channel, one cold time, when the hail drifted heavily and the sea ran high. The likeness passed away, like a breath along the surface of the gaunt pier-glass behind her, on the frame of which, a hospital procession of negro cupids, several headless and all cripples, were offering black baskets of Dead Sea fruit toblack divinities of the feminine gender-and he made his formal bow to Miss Manette.";
 	public static ArrayList<String> twoCities1;
-	public static int length = 0;
+	public static int length;
+	public static ArrayList<ArrayList<String>> stories = new ArrayList<ArrayList<String>>(100);
+	static int randomStory;
+	
 	
 	public static void main(String[] args) {
-		homer2 = toArr(Homer1);
-		length = homer2.size();
+//		System.out.println("test1");
+//		ArrayList<String> t1 = new ArrayList<String>();
+//		t1.add("s");
+//		System.out.println("t2");
+//		stories.add(t1);
+//		System.out.println("test3");
+		makeArrays();
+		
 		Stopwatch timer = new Stopwatch();
 		System.out.println("When you have finished reading, type 'd' and press enter");
 		System.out.println("Ready? (Y)");
@@ -30,9 +42,24 @@ public class Skeleton {
 		System.out.println((double)length*(double)60/((double)timer.getElapsedTime()/(double)1000)+"wpm");
 	}
 	
+	public static void makeArrays() {
+		homer2 = toArr(Homer1);
+		twoCities1 = toArr(twoCities);
+		ArrayList<String> manifesto1= toArr(manifesto);
+		stories.add(twoCities1);
+		stories.add(homer2);
+		stories.add(manifesto1);
+		randomStory = (int)((double)Math.random()*(double)stories.size());
+//		System.out.println(stories.get(1).get(0));
+//		System.out.println(stories.get(randomStory).get(0));
+//		System.out.println(randomStory);
+//		System.out.println(stories.size());
+		length = stories.get(randomStory).size();
+	}
+	
 	public static void printStory(int x) {
 		for (int i = 0; i<x;i++) {
-			System.out.print(homer2.get(i)+" ");
+			System.out.print(stories.get(randomStory).get(i)+" ");
 			if (i%20==0&&i!=0) {
 				System.out.println();
 			}
